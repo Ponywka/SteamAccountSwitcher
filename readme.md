@@ -14,3 +14,5 @@ For adding a new account you can press `Create new account` button and just auth
 For switching account you need select your account on list and click `Switch account` button.
 
 If you dont see your account you can press `Create new account` or reopen the application. Accounts list reload after this.
+
+[Video with work](https://www.youtube.com/watch?v=-imcFu8ydVY "Video with work")
