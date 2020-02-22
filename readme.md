@@ -1,4 +1,4 @@
-# Steam Account Switcher
+# Steam Account Switcher | [Download release](https://github.com/Ponywka/SteamAccountSwitcher/releases)
 
 ![](https://raw.githubusercontent.com/Ponywka/SteamAccountSwitcher/master/screenshot.png)
 

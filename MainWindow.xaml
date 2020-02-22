@@ -5,15 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SteamAccountSwitcher"
         mc:Ignorable="d"
-        Title="Steam Account Switcher" Height="350" Width="435">
+        Title="Steam Account Switcher" Height="456" Width="480">
     <Grid Margin="0,0,0,0">
-        <ListBox x:Name="accounts" Margin="10,10,10,72" SelectionChanged="accounts_SelectionChanged"/>
+        <Label Content="Current user:"  Margin="10,10,0,0" HorizontalAlignment="Left" Width="78" Height="26" VerticalAlignment="Top"/>
+        <ListBox Name="currentUser" Margin="10,41,10,0" Height="56" VerticalAlignment="Top" IsEnabled="False">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding profilePhoto}" Width="48" Height="48"/>
+
+                        <Grid Grid.Column="1" Margin="10, 8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"/>
+                                <RowDefinition Height="16"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{Binding username}" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="1" Text="{Binding name}"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Label Content="Other accounts:" Margin="10,102,0,0" HorizontalAlignment="Left" Width="93" Height="26" VerticalAlignment="Top"/>
+        <Image Source="background.png" HorizontalAlignment="Right" Width="200" Height="200" VerticalAlignment="Bottom" Margin="0,0,10,72" Opacity="0.2" />
+        <ListBox Name="accountsList" Margin="10,133,10,72" IsSynchronizedWithCurrentItem="False" Background="Transparent" SelectionChanged="accountsList_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding profilePhoto}" Width="48" Height="48"/>
+
+                        <Grid Grid.Column="1" Margin="10, 8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"/>
+                                <RowDefinition Height="16"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="{Binding username}" FontWeight="Bold"/>
+                            <TextBlock Grid.Row="1" Text="{Binding name}"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
         <Label Content="Steam path:" HorizontalAlignment="Left" Margin="10,0,0,41" Height="26" VerticalAlignment="Bottom"/>
-        <Button Content="Select" Margin="0,0,10,44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="76" Click="Button_Click"/>
-        <TextBox x:Name="steam_path" Margin="88,0,91,44" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Bottom" Height="20"/>
+        <Button Name="changeDirBtn" Content="Select" Margin="0,0,10,44" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="76" Click="changeDirBtn_Click"/>
+        <TextBox x:Name="steam_path" Margin="88,0,91,44" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="20"/>
         <Button x:Name ="switchBtn" Content="Switch account" Margin="0,0,10,13" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="switchBtn_Click" IsEnabled="False"/>
         <Button x:Name ="newUserBtn" Content="Create new account" Margin="0,0,115,13" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="130" Click="newUserBtn_Click"/>
-        <Label Content="@Ponywka | 2020&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,0,0,10" Height="26" VerticalAlignment="Bottom"/>
-
+        <Label Content="Author: @Ponywka" HorizontalAlignment="Left" Margin="10,0,0,10" Height="26" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
