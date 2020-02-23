@@ -33,7 +33,7 @@
 
         <Label Content="Other accounts:" Margin="10,102,0,0" HorizontalAlignment="Left" Width="93" Height="26" VerticalAlignment="Top"/>
         <Image Source="background.png" HorizontalAlignment="Right" Width="200" Height="200" VerticalAlignment="Bottom" Margin="0,0,10,72" Opacity="0.2" />
-        <ListBox Name="accountsList" Margin="10,133,10,72" IsSynchronizedWithCurrentItem="False" Background="Transparent" SelectionChanged="accountsList_SelectionChanged">
+        <ListBox Name="steamAccounts" Margin="10,133,10,72" IsSynchronizedWithCurrentItem="False" Background="Transparent" SelectionChanged="accountsList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
