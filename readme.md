@@ -15,4 +15,4 @@ For switching account you need select your account on list and click `Switch acc
 
 If you dont see your account you can press `Create new account` or reopen the application. Accounts list reload after this.
 
-[Video with work](https://www.youtube.com/watch?v=-imcFu8ydVY "Video with work")
+[Video with work](https://www.youtube.com/watch?v=7BnlsCjRjis "Video with work")
