@@ -98,8 +98,7 @@ namespace SteamAccountSwitcher
             string responseText = sr.ReadToEnd();
 
             Match m;
-
-            m = Regex.Match(responseText, "<div class=\"playerAvatarAutoSizeInner\">[\\s\\S]+?<img src=\"([\\s\\S]+?)\">", RegexOptions.IgnoreCase);
+            m = Regex.Match(responseText, "<div class=\"playerAvatarAutoSizeInner\">[\\s\\S]+?<img src=\"(https:\\/\\/cdn.cloudflare.steamstatic.com\\/steamcommunity\\/public\\/images\\/avatars\\/[\\s\\S]+?)\">", RegexOptions.IgnoreCase);
             if (m.Success) account.profilePhoto = m.Groups[1].Value;
 
             m = Regex.Match(responseText, "<span class=\"actual_persona_name\">([\\s\\S]+?)<\\/span>", RegexOptions.IgnoreCase);
