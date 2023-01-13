@@ -18,7 +18,7 @@ namespace SteamAccountSwitcher
         public string uuid { get; set; }
         public string filePath { get; set; }
         public string steamID { get; set; }
-        public string profilePhoto { get; set; }
+        public string profilePhoto { get; set; } = "https://avatars.cloudflare.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg";
     }
     public class Steam
     {
@@ -98,7 +98,7 @@ namespace SteamAccountSwitcher
             string responseText = sr.ReadToEnd();
 
             Match m;
-            m = Regex.Match(responseText, "<div class=\"playerAvatarAutoSizeInner\">[\\s\\S]+?<img src=\"(https:\\/\\/cdn.cloudflare.steamstatic.com\\/steamcommunity\\/public\\/images\\/avatars\\/[\\s\\S]+?)\">", RegexOptions.IgnoreCase);
+            m = Regex.Match(responseText, "<meta property=\"og:image\" content=\"([\\S]+?_full.jpg)\">", RegexOptions.IgnoreCase);
             if (m.Success) account.profilePhoto = m.Groups[1].Value;
 
             m = Regex.Match(responseText, "<span class=\"actual_persona_name\">([\\s\\S]+?)<\\/span>", RegexOptions.IgnoreCase);
