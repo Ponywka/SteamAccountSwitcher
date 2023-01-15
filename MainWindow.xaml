@@ -61,6 +61,5 @@
         <TextBox x:Name="steam_path" Margin="88,0,91,44" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="20"/>
         <Button x:Name ="switchBtn" Content="Switch account" Margin="0,0,10,13" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="switchBtn_Click" IsEnabled="False"/>
         <Button x:Name ="newUserBtn" Content="Create new account" Margin="0,0,115,13" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="130" Click="newUserBtn_Click"/>
-        <Label Content="Author: @Ponywka" HorizontalAlignment="Left" Margin="10,0,0,10" Height="26" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
