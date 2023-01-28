@@ -1,0 +1,57 @@
+name: Build and upload
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  tests:
+    name: Build and upload
+    runs-on: windows-2019
+    env:
+      ARTIFACT_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
+    steps:
+      - name: Check out repo's default branch
+        uses: actions/checkout@v3
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.1.1
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Restore Packages
+        run: nuget restore ${{ github.event.repository.name }}.sln
+      - name: Build solution
+        run: msbuild ${{ github.event.repository.name }}.sln -t:rebuild -property:Configuration=Release
+      - name: Deleting optional files
+        run: |
+          cd ${{ github.workspace }}\bin\Release\
+          del *.xml
+          del *.pdb
+          cd..
+          Rename-Item Release ${{ github.event.repository.name }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ github.workspace }}\bin\${{ github.event.repository.name }}
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: 'zip'
+          filename: ${{ env.ARTIFACT_NAME }}.zip
+          directory: ${{ github.workspace }}
+          path: ${{ github.workspace }}\bin\${{ github.event.repository.name }}
+      - name: Upload artifact.zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}.zip
+          path: ${{ github.workspace }}\${{env.ARTIFACT_NAME }}.zip
+      - name: Upload asset to release
+        if: ${{ github.event_name == 'release' }}
+        uses: echapmanFromBunnings/upload-release-assets@1.2
+        with:
+          releaseTag: ${{ github.ref_name }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          artefactName: ${{env.ARTIFACT_NAME }}.zip
