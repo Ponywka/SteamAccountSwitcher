@@ -50,8 +50,11 @@ jobs:
           path: ${{ github.workspace }}\${{env.ARTIFACT_NAME }}.zip
       - name: Upload asset to release
         if: ${{ github.event_name == 'release' }}
-        uses: echapmanFromBunnings/upload-release-assets@1.2
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseTag: ${{ github.ref_name }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          artefactName: ${{env.ARTIFACT_NAME }}.zip
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ github.workspace }}\${{env.ARTIFACT_NAME }}.zip
+          asset_name: ${{env.ARTIFACT_NAME }}.zip
+          asset_content_type: application/zip
